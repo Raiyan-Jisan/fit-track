@@ -1,1 +1,3 @@
-Set-Content README.md "# FitLog`n`nA workout library built with Next.js, TypeScript and Tailwind CSS."
+# FitLog
+
+A workout library built with Next.js, TypeScript and Tailwind CSS.
