@@ -13,7 +13,7 @@ type SortBy = "duration" | "calories" | "rating";
 export default function MyPlanPage() {
   const { plan, saved } = usePlan();
   const [activeTab, setActiveTab] = useState<ActiveTab>("today");
-  const [sortBy, setSortBy] = useState<SortBy>("rating");
+  const [sortBy, setSortBy] = useState<SortBy>("duration");
 
   const sortWorkouts = (workouts: Workout[]) => {
     const sortedWorkouts = [...workouts];
@@ -42,7 +42,7 @@ export default function MyPlanPage() {
         Organize today&apos;s workouts and keep track of exercises you want to try.
       </p>
 
-      <PlanSummary plan={plan} />
+      <PlanSummary plan={plan} saved={saved} activeTab={activeTab} />
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div role="tablist" className="tabs tabs-boxed w-fit bg-base-200">
@@ -51,7 +51,7 @@ export default function MyPlanPage() {
             role="tab"
             aria-selected={activeTab === "today"}
             onClick={() => setActiveTab("today")}
-            className={`tab ${activeTab === "today" ? "tab-active" : ""}`}
+            className={`tab transition-colors ${activeTab === "today" ? "bg-brand font-semibold text-black" : "text-base-content/70 hover:text-base-content"}`}
           >
             Today&apos;s Plan ({plan.length})
           </button>
@@ -60,7 +60,7 @@ export default function MyPlanPage() {
             role="tab"
             aria-selected={activeTab === "saved"}
             onClick={() => setActiveTab("saved")}
-            className={`tab ${activeTab === "saved" ? "tab-active" : ""}`}
+            className={`tab transition-colors ${activeTab === "saved" ? "bg-brand font-semibold text-black" : "text-base-content/70 hover:text-base-content"}`}
           >
             Saved ({saved.length})
           </button>
@@ -73,8 +73,8 @@ export default function MyPlanPage() {
             onChange={(event) => setSortBy(event.target.value as SortBy)}
             className="select select-bordered select-sm bg-base-200"
           >
-            <option value="rating">Rating</option>
             <option value="duration">Duration</option>
+            <option value="rating">Rating</option>
             <option value="calories">Calories</option>
           </select>
         </label>
