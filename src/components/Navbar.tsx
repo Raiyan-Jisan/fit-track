@@ -3,13 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { usePlan } from "@/context/PlanContext";
 
 export default function Navbar() {
   const pathname = usePathname();
 
   // These will come from the shared plan/saved state later
-  const planCount = 0;
-  const savedCount = 0;
+  // const planCount = 0;
+  // const savedCount = 0;
+
+    const { plan, saved } = usePlan();
+  const planCount = plan.length;
+  const savedCount = saved.length;
 
   const linkClass = (active: boolean) =>
     `rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${

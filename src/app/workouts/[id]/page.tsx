@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Bookmark, CalendarPlus } from "lucide-react";
+import WorkoutActions from "@/components/Actions";
 import { getSingleItem } from "@/Library/api";
 import { Workout } from "@/types/workouts";
 
@@ -48,7 +48,9 @@ export default async function WorkoutDetails({
           <h1 className="font-heading text-4xl font-semibold uppercase tracking-wide">
             {workout.name}
           </h1>
-          <p className="mt-2 text-sm text-muted">{workout.description}</p>
+          <p className="mt-2 text-sm text-base-content/60">
+            {workout.description}
+          </p>
 
           <div className="mt-4 flex flex-wrap gap-2">
             {workout.muscleGroups.map((group) => (
@@ -67,7 +69,7 @@ export default async function WorkoutDetails({
                 key={spec.label}
                 className="flex items-center justify-between border-b border-base-300 px-4 py-3 text-xs last:border-b-0"
               >
-                <dt className="font-semibold uppercase tracking-wider text-muted">
+                <dt className="font-semibold uppercase tracking-wider text-base-content/60">
                   {spec.label}
                 </dt>
                 <dd>{spec.value}</dd>
@@ -84,16 +86,7 @@ export default async function WorkoutDetails({
             ))}
           </ol>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button className="flex items-center gap-2 rounded-lg bg-brand px-5 py-2.5 text-xs font-bold text-black transition hover:opacity-90">
-              <CalendarPlus size={14} />
-              Add to today&apos;s plan
-            </button>
-            <button className="flex items-center gap-2 rounded-lg border border-base-300 px-5 py-2.5 text-xs font-semibold transition hover:border-brand/60">
-              <Bookmark size={14} />
-              Save for later
-            </button>
-          </div>
+          <WorkoutActions workout={workout} />
         </div>
       </div>
     </div>

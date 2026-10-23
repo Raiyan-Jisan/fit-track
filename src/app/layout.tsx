@@ -43,6 +43,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PlanProvider } from "@/context/PlanContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -68,12 +69,14 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="fitlog" className={`${inter.variable} ${oswald.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
-        <Navbar />
+        <PlanProvider> 
+            <Navbar />
 
         <main className="flex-1">{children}</main>
 
         <Footer />
-
+        </PlanProvider>
+  
         <Toaster
           position="top-right"
           toastOptions={{
