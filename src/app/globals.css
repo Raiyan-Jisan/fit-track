@@ -1,51 +1,43 @@
-/* @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
-
 
 @import "tailwindcss";
+@plugin "daisyui";
 
-:root {
-  --background: #0b0d12;
-  --foreground: #f2f2f2;
-  --surface: #12151c;
-  --line: #232833;
-  --muted: #8b909c;
-  --accent: #ccff00;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-surface: var(--surface);
-  --color-line: var(--line);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);
+@theme {
+  --color-brand: #ccff00;
   --font-sans: var(--font-inter);
   --font-heading: var(--font-oswald);
+}
+
+@plugin "daisyui/theme" {
+  name: "fitlog";
+  default: true;
+  color-scheme: dark;
+
+  --color-base-100: #0b0d12;
+  --color-base-200: #12151c;
+  --color-base-300: #232833;
+  --color-base-content: #f5f5f5;
+
+  --color-primary: #ccff00;
+  --color-primary-content: #0b0d12;
+
+  --color-secondary: #8b909c;
+  --color-secondary-content: #0b0d12;
+
+  --color-accent: #ccff00;
+  --color-accent-content: #0b0d12;
+
+  --color-neutral: #12151c;
+  --color-neutral-content: #f5f5f5;
+
+  --color-info: #38bdf8;
+  --color-success: #a3e635;
+  --color-warning: #facc15;
+  --color-error: #f87171;
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
 }
 
 html {
@@ -53,7 +45,11 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #0b0d12;
+  color: #f5f5f5;
   font-family: var(--font-inter), sans-serif;
+}
+
+.font-heading {
+  font-family: var(--font-oswald), sans-serif;
 }

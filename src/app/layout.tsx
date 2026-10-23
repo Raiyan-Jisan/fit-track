@@ -1,6 +1,9 @@
 // import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 // import "./globals.css";
+// import { Toaster } from "react-hot-toast";
+// import Navbar from "@/components/Navbar";
+// import Footer from "@/components/Footer";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -23,15 +26,23 @@
 //       lang="en"
 //       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
 //     >
-//       <body className="min-h-full flex flex-col">{children}</body>
+//       <body className="min-h-full flex flex-col">
+//         <Navbar/>
+
+//         <main className="flex-1" >{children}</main>
+//         <Footer/ >
+//       <Toaster/>
+//       </body>
 //     </html>
 //   );
 // }
 
-
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -41,21 +52,39 @@ const inter = Inter({
 const oswald = Oswald({
   variable: "--font-oswald",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: "FitLog — Workout Library",
-  description: "Train with intent. Log every set.",
+  description:
+    "Explore workouts, build your daily plan, and track your training with FitLog.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${oswald.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" data-theme="fitlog" className={`${inter.variable} ${oswald.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col">
+        <Navbar />
+
+        <main className="flex-1">{children}</main>
+
+        <Footer />
+
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: "#12151c",
+              color: "#f5f5f5",
+              border: "1px solid #232833",
+            },
+          }}
+        />
+      </body>
     </html>
   );
 }
